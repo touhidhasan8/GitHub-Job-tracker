@@ -8,6 +8,8 @@
           const inputPin = pin.value;
 
           if (inputNumber == "admin" && inputPin == "admin123") {
+
+            console.log("login successFully")
             alert("login Successfully ✅ ");
             window.location.assign('./home.html')
           } else {
