@@ -1,11 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Github job tracker </title>
-</head>
-<body>
-  <h1> Login successful </h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Issues Tracker | Home</title>
+
+    <!-- favicon  -->
+    <link
+      rel="shortcut icon"
+      href="./assets/github-logo.png"
+      type="image/x-icon"
+    />
+
+    <!-- Tailwind and daisyui -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#F8FAFC]">
+    <!-- Navbar -->
+    <nav class="bg-white border-b">
+      <div
+        class="max-w-6xl mx-auto flex items-center justify-between py-4 px-4"
+      >
+        <!-- Logo + Title -->
+        <div class="flex items-center gap-3">
+          <img class="w-[36px]" src="./assets/github-logo.png" alt="" />
+          <h1 class="font-semibold text-2xl">GitHub Issues Tracker</h1>
+        </div>
+
+        <!-- Search -->
+        <div>
+          <input
+            type="text"
+            placeholder="Search issues..."
+            class="input input-bordered w-64"
+          />
+        </div>
+      </div>
+    </nav>
+
+    <!-- Filter Buttons -->
+    <section class="max-w-6xl mx-auto mt-8 px-4">
+      <div class="flex gap-3 mb-6">
+        <button id="allall" class="btn btn-outline btn-primary">All</button>
+        <button id="openBtn" class="btn btn-outline btn-success">Open</button>
+        <button id="closeBtn" class="btn btn-outline btn-error">Close</button>
+      </div>
+
+      <!-- Issues -->
+
+      <div class="flex justify-between mb-5">
+        <div class="flex gap-2 items-center">
+          <img class="w-[45px]" src="./assets/Aperture.png" alt="" />
+          <div>
+            <h1 class="font-semibold text-xl"><span>0</span> Issues</h1>
+            <p class="text-[#64748B]">Track and manage your project issues</p>
+          </div>
+        </div>
+        <!-- Open Close Status   -->
+        <div class="flex items-center gap-2">
+          <div class="open flex items-center">
+            <img class="w-5 h-5" src="./assets/Open-Status.png" alt="" />
+            <h1>Open</h1>
+          </div>
+          <div class="close flex items-center">
+            <img class="w-5 h-5" src="./assets/Closed- Status .png" alt="" />
+            <h1>Close</h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div id="cardSection" class="grid grid-cols-1 md:grid-cols-3  gap-6">
+        
+      </div>
+
+    </section>
+
+  </body>
 </html>
+
+
+
