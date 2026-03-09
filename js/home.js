@@ -41,11 +41,11 @@ const modalData = (modal) => {
       ${modal.title}
     </h2>
     <div class="flex items-center gap-5">
-    <div class="p-2 rounded-md text-white bg-green-500">
+    <div class="p-2 rounded-md text-white bg-green-600">
   ${modal.status === "open" ? "Opened" : "Closed"}
 </div>
       
-      <p class="text-[#64748B]">${modal.assignee} </p>
+      <p class="text-[#64748B]">${modal.assignee ? modal.assignee : "No assign"}</p>
       <p class="text-[#64748B]">${modal.createdAt}</p>
     </div>
   
@@ -53,7 +53,7 @@ const modalData = (modal) => {
               ${modal.labels
                 .map(
                   (label) => `
-              <p class="  badge badge-warning ">${label.toUpperCase()}</p>
+              <p class="badge badge-warning">${label.toUpperCase()}</p>
             `,
                 )
                 .join("")}
@@ -66,7 +66,7 @@ const modalData = (modal) => {
       
        <div>
        <p class="text-[#64748B]">Assign</p>
-       <p class="font-bold">${modal.assignee.toUpperCase()}</p>
+       <p class="font-bold">${modal.assignee.toUpperCase() ? modal.assignee : "No assign"}</p>
        </div>
        <div>
        <p>Priority</p>
@@ -174,36 +174,43 @@ const removeActive = () => {
 };
 
 // All button
-document.getElementById("allbtn").addEventListener("click", function () {
+document.getElementById("allbtn").addEventListener("click", (event) => {
   removeActive();
-  this.classList.add("active");
+  event.target.classList.add("active");
   cardRemove();
   allJobs(allCardData);
 });
 
 // Open button
-document.getElementById("openBtn").addEventListener("click", function () {
+document.getElementById("openBtn").addEventListener("click", (open) => {
   removeActive();
-  this.classList.add("active");
+  open.target.classList.add("active");
   const openData = allCardData.filter((item) => item.status == "open");
   cardRemove();
   allJobs(openData);
 });
 
 // Close button
-document.getElementById("closeBtn").addEventListener("click", function () {
+document.getElementById("closeBtn").addEventListener("click", (close) => {
   removeActive();
-  this.classList.add("active");
+  close.target.classList.add("active");
   const closeData = allCardData.filter((item) => item.status == "closed");
   cardRemove();
   allJobs(closeData);
 });
 
-// Modal
-
-// const cardDetails =async ()=>{
-//   const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues`)
-//     const data = await res.json()
-//     modalData(data.data)
-// }
-// searchIssu()
+document.getElementById("search-btn").addEventListener("click", () => {
+  const input = document.getElementById("input-search");
+  const searchText = input.value.trim().toLowerCase();
+  console.log(searchText);
+  fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+    .then((res) => res.json())
+    .then((data) => {
+      const allData = data.data;
+      const filterData = allData.filter((items) =>
+        items.title.toLowerCase().includes(searchText),
+      );
+       cardRemove()
+      allJobs(filterData)
+    });
+});

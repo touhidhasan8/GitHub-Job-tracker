@@ -48,26 +48,14 @@
 
         <!-- Search -->
         <div>
-          <div class="join">
+          <div class="join flex gap-2">
             <div>
               <label class="input validator search card ">
-                
-                  <g
-                    stroke-linejoin="round"
-                    stroke-linecap="round"
-                    stroke-width="2.5"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                  </g>
-                
-                <input type="text" placeholder="Search issues..." required />
+                <input id="input-search" type="text" placeholder="Search issues..." required />
               </label>
-              <div class="validator-hint hidden">Enter valid email address</div>
+              <div class="validator-hint hidden">Enter correct text</div>
             </div>
-            <button class="btn btn-neutral join-item">Join</button>
+            <button id="search-btn" class="btn btn-primary join-item rounded-sm">Search</button>
           </div>
         </div>
       </div>
@@ -130,46 +118,3 @@
     <script src="./js/home.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-<!-- 
-
-<div>
-        <h1 class="text-2xl font-bold">${modal.title}</h1>
-        <div class="flex gap-2"> 
-          <button class="btn btn-success text-white items-center">Opened</button>
-          <p class="text-[#64748B]">Opened by Fahim Ahmed</p>
-          <p class="text-[#64748B]">22/02/2026</p>
-        </div>
-        <div class="flex gap-5"> 
-          <p>bug</p>
-          <p>hrlp</p>
-        </div>
-        <div class="text-[#64748B]">
-          <p> description</p>
-        </div>
-        <div class="flex">
-         <div>
-           <p>Assignee:</p>
-          <p>Fahim ahmed:</p>
-         </div>
-          <div> 
-            <p> priority</p>
-            <button class="btn btn-outline error"> High</button>
-          </div>
-        </div>
-      </div>
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <!-- <button class="btn">Close</button>
-      </form>
-    </div>
-  </div> --> 
