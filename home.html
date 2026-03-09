@@ -28,6 +28,12 @@
       rel="stylesheet"
     />
   </head>
+  <style>
+    .active{
+      background-color: #4A00FF;
+      color: white;
+    }
+  </style>
   <body class="bg-[#F8FAFC]">
     <!-- Navbar -->
     <nav class="bg-white border-b">
@@ -54,9 +60,9 @@
     <!-- Filter Buttons -->
     <section class="max-w-6xl mx-auto mt-8 px-4">
       <div class="flex gap-3 mb-6">
-        <button id="allbtn" class="btn btn-outline btn-primary">All</button>
-        <button id="openBtn" class="btn btn-outline btn-success">Open</button>
-        <button id="closeBtn" class="btn btn-outline btn-error">Close</button>
+        <button id="allbtn" class="btn btn-outline bg-[#4A00FF] text-white border-[#4A00FF]">All</button>
+        <button id="openBtn" class="btn btn-outline btn-primary">Open</button>
+        <button id="closeBtn" class="btn btn-outline btn-primary">Closed</button>
       </div>
 
       <!-- Issues -->
@@ -65,7 +71,7 @@
         <div class="flex gap-2 items-center">
           <img class="w-[45px]" src="./assets/Aperture.png" alt="" />
           <div>
-            <h1 class="font-semibold text-xl"><span>0</span> Issues</h1>
+            <h1 class="font-semibold text-xl"><span id="cardCounter">0</span> Issues</h1>
             <p class="text-[#64748B]">Track and manage your project issues</p>
           </div>
         </div>

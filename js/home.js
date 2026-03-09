@@ -1,35 +1,43 @@
-// Loading Effect Add 
-const loadingAdd =()=>{
-  const add = document.getElementById('loadingEffect');
-  add.classList.remove('hidden');
-  add.classList.add('flex')
-}
+// Loading Effect Add
+const loadingAdd = () => {
+  const add = document.getElementById("loadingEffect");
+  add.classList.remove("hidden");
+  add.classList.add("flex");
+};
 
-const loadingRemove=()=>{
-  const remove = document.getElementById('loadingEffect');
-  remove.classList.add('hidden')
-  remove.classList.remove('flex');
-}
+const loadingRemove = () => {
+  const remove = document.getElementById("loadingEffect");
+  remove.classList.add("hidden");
+  remove.classList.remove("flex");
+};
 
+const addActive = () => {
+  const allBtn = document.getElementById("allbtn");
+  const openBtn = document.getElementById("openBtn");
+  const closeBtn = document.getElementById("closeBtn");
+  allBtn.classList.add("active");
+  openBtn.classList.add("active");
+  closeBtn.classList.add("active");
+};
 
-let allCardData = []; 
-// Data Fetching and Functionalities Adding 
+let allCardData = [];
+// Data Fetching and Functionalities Adding
 async function allJobFetching() {
-  loadingAdd ()
+  loadingAdd();
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await res.json();
-  loadingRemove()
-   allCardData = data.data
-  // console.log(allCardData)
+  loadingRemove();
+  allCardData = data.data;
   allJobs(allCardData);
 }
 allJobFetching();
 
 const allJobs = (job) => {
   const allBtn = document.getElementById("cardSection");
-
+  const cardLength = document.getElementById('cardCounter');
+cardLength.textContent = `${job.length}`
   job.forEach((items) => {
     const div = document.createElement("div");
     div.innerHTML = `
@@ -54,12 +62,12 @@ const allJobs = (job) => {
       <div>
         <div class="card-actions flex "> 
               ${items.labels
-            .map(
-              (label) => `
+                .map(
+                  (label) => `
               <p class="  bg-yellow-500 ">${label.toUpperCase()}</p>
             `,
-            )
-            .join("")}
+                )
+                .join("")}
         </div>
         <hr class="my-3">
         <div class="text-[#64748B]">
@@ -76,20 +84,51 @@ const allJobs = (job) => {
 };
 
 
-// Btn options 
-document.getElementById('allbtn').addEventListener('click',function () {
-  // allJobs(allCardData);
-  const alBtn = allCardData
-  console.log(alBtn)
-})
+const cardRemove = () => {
+  const card = document.getElementById("cardSection");
+  card.innerHTML = "";
+};
 
-// Open
-document.getElementById('openBtn').addEventListener('click',function(){
-  const openBtnClick = allCardData.filter(btnOpen => btnOpen.status=='open');
-  console.log(openBtnClick)
-  // allJobs(openBtnClick)
-})
-document.getElementById('closeBtn').addEventListener('click',function(){
-  const openBtnClick = allCardData.filter(btnClose => btnClose.status=='closed')
-  // console.log(openBtnClick)
-})
+
+// Reset all buttons
+const removeActive = () => {
+  const allBtn = document.getElementById('allbtn');
+  const openBtn = document.getElementById('openBtn');
+  const closeBtn = document.getElementById('closeBtn');
+
+  // Remove active
+  allBtn.classList.remove('active');
+  openBtn.classList.remove('active');
+  closeBtn.classList.remove('active');
+
+  // Reset colors
+  allBtn.classList.remove('bg-[#4A00FF]', 'text-white');
+  openBtn.classList.remove('bg-[#4A00FF]', 'text-white');
+  closeBtn.classList.remove('bg-[#4A00FF]', 'text-white');
+};
+
+// All button
+document.getElementById('allbtn').addEventListener('click', function() {
+  removeActive();
+  this.classList.add('active'); 
+  cardRemove();
+  allJobs(allCardData);
+});
+
+// Open button
+document.getElementById('openBtn').addEventListener('click', function() {
+  removeActive();
+  this.classList.add('active');  
+  const openData = allCardData.filter(item => item.status=='open');
+  cardRemove();
+  allJobs(openData);
+});
+
+// Close button
+document.getElementById('closeBtn').addEventListener('click', function() {
+  removeActive();
+  this.classList.add('active');  
+  const closeData = allCardData.filter(item => item.status=='closed');
+  cardRemove();
+  allJobs(closeData);
+});
