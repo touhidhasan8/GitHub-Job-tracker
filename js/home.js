@@ -202,7 +202,7 @@ document.getElementById("closeBtn").addEventListener("click", (close) => {
 document.getElementById("search-btn").addEventListener("click", () => {
   const input = document.getElementById("input-search");
   const searchText = input.value.trim().toLowerCase();
-  console.log(searchText);
+
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then((res) => res.json())
     .then((data) => {
