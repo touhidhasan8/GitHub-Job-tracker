@@ -8,9 +8,11 @@ const loadingAdd =()=>{
 const loadingRemove=()=>{
   const remove = document.getElementById('loadingEffect');
   remove.classList.add('hidden')
-   remove.classList.remove('flex');
+  remove.classList.remove('flex');
 }
 
+
+let allCardData = []; 
 // Data Fetching and Functionalities Adding 
 async function allJobFetching() {
   loadingAdd ()
@@ -19,14 +21,16 @@ async function allJobFetching() {
   );
   const data = await res.json();
   loadingRemove()
-  allJobs(data);
+   allCardData = data.data
+  // console.log(allCardData)
+  allJobs(allCardData);
 }
 allJobFetching();
 
 const allJobs = (job) => {
   const allBtn = document.getElementById("cardSection");
 
-  job.data.forEach((items) => {
+  job.forEach((items) => {
     const div = document.createElement("div");
     div.innerHTML = `
     <div onclick="cardDetails(${items.id})">
@@ -56,9 +60,6 @@ const allJobs = (job) => {
             `,
             )
             .join("")}
-
-
-          
         </div>
         <hr class="my-3">
         <div class="text-[#64748B]">
@@ -69,12 +70,26 @@ const allJobs = (job) => {
     </div>
 
   </div>
-</div>
-
-
-
-
-   `;
+</div>`;
     allBtn.append(div);
   });
 };
+
+
+// Btn options 
+document.getElementById('allbtn').addEventListener('click',function () {
+  // allJobs(allCardData);
+  const alBtn = allCardData
+  console.log(alBtn)
+})
+
+// Open
+document.getElementById('openBtn').addEventListener('click',function(){
+  const openBtnClick = allCardData.filter(btnOpen => btnOpen.status=='open');
+  console.log(openBtnClick)
+  // allJobs(openBtnClick)
+})
+document.getElementById('closeBtn').addEventListener('click',function(){
+  const openBtnClick = allCardData.filter(btnClose => btnClose.status=='closed')
+  // console.log(openBtnClick)
+})
